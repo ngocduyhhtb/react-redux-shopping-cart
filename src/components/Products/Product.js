@@ -1,10 +1,8 @@
-import React, {useEffect} from 'react';
+import React from 'react';
+import * as Message from "../../constants/MessageType";
 
 const Product = (props) => {
     const {product} = props;
-    useEffect(() => {
-        console.log(product)
-    }, [product]);
     const showRating = () => {
         let result = [];
         if (product.star > 0) {
@@ -16,7 +14,10 @@ const Product = (props) => {
         }
         return result;
     }
-
+    const onAddToCart = (product) => {
+        props.onAddTocart(product);
+        props.onChangeMessage(Message.MSG_ADD_TO_CART_SUCCESS);
+    }
     return (
         <div className="col-lg-4 col-md-6 mb-r">
             <div className="card text-center card-cascade narrower">
@@ -41,12 +42,17 @@ const Product = (props) => {
                         {product.description}
                     </p>
                     <div className="card-footer">
-                        <span className="left">{product.price}$</span>
+                        <div className="left">
+                            <button className="btn btn-primary">
+                                {product.price}$
+                            </button>
+                        </div>
                         <span className="right">
-                            <a href={"/"} className="btn-floating blue-gradient" data-toggle="tooltip"
-                               data-placement="top">
-                                <i className="fa fa-shopping-cart"/>
-                            </a>
+                            <button className="btn btn-dark" data-toggle="tooltip"
+                                    data-placement="top" onClick={() => onAddToCart(product)}>
+                                Add To Cart
+                            </button>
+                            <i className="bi bi-cart"/>
                         </span>
                     </div>
                 </div>

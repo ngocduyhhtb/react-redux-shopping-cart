@@ -1,26 +1,27 @@
-import CartResult from "./CartResult";
-
+import styled from 'styled-components';
+const Th = styled.th`
+    text-align: center;
+`
 const Cart = (props) => {
     const {children} = props;
     return (
         <section className="section">
             <div className="table-responsive">
-                <table className="table product-table" style={{textAlign: "center"}}>
+                <table className="table product-table" id="cart-table">
                     <thead>
                     <tr>
-                        <th/>
-                        <th>Sản Phẩm</th>
-                        <th>Giá</th>
-                        <th>
+                        <Th>Ảnh</Th>
+                        <Th>Tên Sản Phẩm</Th>
+                        <Th>Giá</Th>
+                        <Th>
                             <span>Số Lượng</span>
-                        </th>
-                        <th>Tổng Cộng</th>
-                        <th/>
+                        </Th>
+                        <Th>Tổng Cộng</Th>
+                        <Th/>
                     </tr>
                     </thead>
                     <tbody>
                     {children}
-                    <CartResult/>
                     </tbody>
                 </table>
             </div>
